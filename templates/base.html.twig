@@ -15,26 +15,26 @@
         <nav class="navbar navbar-default navbar-static-top navbar-dark bg-dark navbar-expand-md {{ app.session.flashbag.peek('success')|length > 0 ? '' : 'mb-5' }}" role="navigation">
             <div class="container">
                 <div class="navbar-header col-md-3 col-lg-2">
-                    <a class="navbar-brand" href="{{ path('teilnehmer_list') }}">
+                    {# <a class="navbar-brand" href="{{ path('teilnehmer_list') }}">
                         <i class="fa fa-home"></i>Home
-                    </a>
+                    </a> #}
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>	
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav navbar-right mr-auto">                    
+                    {# <ul class="navbar-nav navbar-right mr-auto">                    
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('mitarbeiter_list') }}">Mitarbeiter</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('teilnehmer_list') }}">Teilnehmer</a>                       
                         </li>
-                    </ul>
-                    <form id="search-form" class="form-inline" role="search" method="get" action="{{ path('teilnehmer_search') }}">
+                    </ul> #}
+                    {# <form id="search-form" class="form-inline" role="search" method="get" action="{{ path('teilnehmer_search') }}">
                             <input class="form-control form-control-sm mr-sm-2" type="text" name="q" placeholder="Suche...">
                             <button class="btn btn-sm btn-success" type="submit"><i class="fa fa-search"></i> Suche</button>
-                    </form>
+                    </form> #}
                 </div>
             </div>
         </nav>

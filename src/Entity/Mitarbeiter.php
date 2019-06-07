@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,16 @@ class Mitarbeiter
      * @ORM\ManyToOne(targetEntity="App\Entity\Funktion", inversedBy="mitarbeiters")
      */
     private $funktion;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Teilnehmer", mappedBy="ansprechpartner")
+     */
+    private $teilnehmers;
+
+    public function __construct()
+    {
+        $this->teilnehmers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +131,34 @@ class Mitarbeiter
     public function setFunktion(?Funktion $funktion): self
     {
         $this->funktion = $funktion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Teilnehmer[]
+     */
+    public function getTeilnehmers(): Collection
+    {
+        return $this->teilnehmers;
+    }
+
+    public function addTeilnehmer(Teilnehmer $teilnehmer): self
+    {
+        if (!$this->teilnehmers->contains($teilnehmer)) {
+            $this->teilnehmers[] = $teilnehmer;
+            $teilnehmer->addAnsprechpartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeilnehmer(Teilnehmer $teilnehmer): self
+    {
+        if ($this->teilnehmers->contains($teilnehmer)) {
+            $this->teilnehmers->removeElement($teilnehmer);
+            $teilnehmer->removeAnsprechpartner($this);
+        }
 
         return $this;
     }
