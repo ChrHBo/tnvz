@@ -53,9 +53,15 @@ class Teilnehmer
      */
     private $berufswunsch;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Eintragung", mappedBy="teilnehmer")
+     */
+    private $eintragungen;
+
     public function __construct()
     {
         $this->ansprechpartner = new ArrayCollection();
+        $this->eintragungen = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,6 +163,37 @@ class Teilnehmer
     public function setBerufswunsch(?Berufswunsch $berufswunsch): self
     {
         $this->berufswunsch = $berufswunsch;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Eintragung[]
+     */
+    public function getEintragungen(): Collection
+    {
+        return $this->eintragungen;
+    }
+
+    public function addEintragungen(Eintragung $eintragungen): self
+    {
+        if (!$this->eintragungen->contains($eintragungen)) {
+            $this->eintragungen[] = $eintragungen;
+            $eintragungen->setTeilnehmer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEintragungen(Eintragung $eintragungen): self
+    {
+        if ($this->eintragungen->contains($eintragungen)) {
+            $this->eintragungen->removeElement($eintragungen);
+            // set the owning side to null (unless already changed)
+            if ($eintragungen->getTeilnehmer() === $this) {
+                $eintragungen->setTeilnehmer(null);
+            }
+        }
 
         return $this;
     }
