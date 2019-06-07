@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teilnehmer{% endblock %}
+
+{% block body %}
+    <h1>Teilnehmer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ teilnehmer.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ teilnehmer.name }}</td>
+            </tr>
+            <tr>
+                <th>Vorname</th>
+                <td>{{ teilnehmer.vorname }}</td>
+            </tr>
+            <tr>
+                <th>Fon</th>
+                <td>{{ teilnehmer.fon }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ teilnehmer.email }}</td>
+            </tr>
+            <tr>
+                <th>Geburtsdatum</th>
+                <td>{{ teilnehmer.geburtsdatum ? teilnehmer.geburtsdatum|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('teilnehmer_index') }}">back to list</a>
+
+    <a href="{{ path('teilnehmer_edit', {'id': teilnehmer.id}) }}">edit</a>
+
+    {{ include('teilnehmer/_delete_form.html.twig') }}
+{% endblock %}

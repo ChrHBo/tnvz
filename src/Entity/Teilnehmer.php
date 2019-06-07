@@ -48,6 +48,11 @@ class Teilnehmer
      */
     private $ansprechpartner;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Berufswunsch", inversedBy="teilnehmers")
+     */
+    private $berufswunsch;
+
     public function __construct()
     {
         $this->ansprechpartner = new ArrayCollection();
@@ -140,6 +145,18 @@ class Teilnehmer
         if ($this->ansprechpartner->contains($ansprechpartner)) {
             $this->ansprechpartner->removeElement($ansprechpartner);
         }
+
+        return $this;
+    }
+
+    public function getBerufswunsch(): ?Berufswunsch
+    {
+        return $this->berufswunsch;
+    }
+
+    public function setBerufswunsch(?Berufswunsch $berufswunsch): self
+    {
+        $this->berufswunsch = $berufswunsch;
 
         return $this;
     }
