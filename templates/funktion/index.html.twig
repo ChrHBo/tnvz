@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funktion index{% endblock %}
+
+{% block body %}
+    <h1>Funktion index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for funktion in funktions %}
+            <tr>
+                <td>{{ funktion.id }}</td>
+                <td>{{ funktion.name }}</td>
+                <td>
+                    <a href="{{ path('funktion_show', {'id': funktion.id}) }}">show</a>
+                    <a href="{{ path('funktion_edit', {'id': funktion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('funktion_new') }}">Create new</a>
+{% endblock %}
