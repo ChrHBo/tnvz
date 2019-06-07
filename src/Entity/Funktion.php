@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +23,16 @@ class Funktion
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Mitarbeiter", mappedBy="funktion")
+     */
+    private $mitarbeiters;
+
+    public function __construct()
+    {
+        $this->mitarbeiters = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +46,37 @@ class Funktion
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mitarbeiter[]
+     */
+    public function getMitarbeiters(): Collection
+    {
+        return $this->mitarbeiters;
+    }
+
+    public function addMitarbeiter(Mitarbeiter $mitarbeiter): self
+    {
+        if (!$this->mitarbeiters->contains($mitarbeiter)) {
+            $this->mitarbeiters[] = $mitarbeiter;
+            $mitarbeiter->setFunktion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMitarbeiter(Mitarbeiter $mitarbeiter): self
+    {
+        if ($this->mitarbeiters->contains($mitarbeiter)) {
+            $this->mitarbeiters->removeElement($mitarbeiter);
+            // set the owning side to null (unless already changed)
+            if ($mitarbeiter->getFunktion() === $this) {
+                $mitarbeiter->setFunktion(null);
+            }
+        }
 
         return $this;
     }
