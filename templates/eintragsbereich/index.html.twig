@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eintragsbereich index{% endblock %}
+
+{% block body %}
+    <h1>Eintragsbereich index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eintragsbereich in eintragsbereiches %}
+            <tr>
+                <td>{{ eintragsbereich.id }}</td>
+                <td>{{ eintragsbereich.name }}</td>
+                <td>
+                    <a href="{{ path('eintragsbereich_show', {'id': eintragsbereich.id}) }}">show</a>
+                    <a href="{{ path('eintragsbereich_edit', {'id': eintragsbereich.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('eintragsbereich_new') }}">Create new</a>
+{% endblock %}
