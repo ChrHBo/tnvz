@@ -63,11 +63,17 @@ class Teilnehmer
      */
     private $massnahmen;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Praktika", mappedBy="teilnehmer")
+     */
+    private $praktikas;
+
     public function __construct()
     {
         $this->ansprechpartner = new ArrayCollection();
         $this->eintragungen = new ArrayCollection();
         $this->massnahmen = new ArrayCollection();
+        $this->praktikas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -229,6 +235,37 @@ class Teilnehmer
             // set the owning side to null (unless already changed)
             if ($massnahman->getTeilnehmer() === $this) {
                 $massnahman->setTeilnehmer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Praktika[]
+     */
+    public function getPraktikas(): Collection
+    {
+        return $this->praktikas;
+    }
+
+    public function addPraktika(Praktika $praktika): self
+    {
+        if (!$this->praktikas->contains($praktika)) {
+            $this->praktikas[] = $praktika;
+            $praktika->setTeilnehmer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePraktika(Praktika $praktika): self
+    {
+        if ($this->praktikas->contains($praktika)) {
+            $this->praktikas->removeElement($praktika);
+            // set the owning side to null (unless already changed)
+            if ($praktika->getTeilnehmer() === $this) {
+                $praktika->setTeilnehmer(null);
             }
         }
 
