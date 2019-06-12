@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Massnahme index{% endblock %}
+
+{% block body %}
+    <h1>Massnahme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Beginn</th>
+                <th>Ende</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for massnahme in massnahmes %}
+            <tr>
+                <td>{{ massnahme.id }}</td>
+                <td>{{ massnahme.beginn ? massnahme.beginn|date('Y-m-d') : '' }}</td>
+                <td>{{ massnahme.ende ? massnahme.ende|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('massnahme_show', {'id': massnahme.id}) }}">show</a>
+                    <a href="{{ path('massnahme_edit', {'id': massnahme.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('massnahme_new') }}">Create new</a>
+{% endblock %}

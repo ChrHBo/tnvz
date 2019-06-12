@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Massnahmeart index{% endblock %}
+
+{% block body %}
+    <h1>Massnahmeart index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for massnahmeart in massnahmearts %}
+            <tr>
+                <td>{{ massnahmeart.id }}</td>
+                <td>{{ massnahmeart.name }}</td>
+                <td>
+                    <a href="{{ path('massnahmeart_show', {'id': massnahmeart.id}) }}">show</a>
+                    <a href="{{ path('massnahmeart_edit', {'id': massnahmeart.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('massnahmeart_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eintragung{% endblock %}
+
+{% block body %}
+    <h1>Eintragung</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ eintragung.id }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{{ eintragung.datum ? eintragung.datum|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ eintragung.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('eintragung_index') }}">back to list</a>
+
+    <a href="{{ path('eintragung_edit', {'id': eintragung.id}) }}">edit</a>
+
+    {{ include('eintragung/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Massnahmeart{% endblock %}
+
+{% block body %}
+    <h1>Create new Massnahmeart</h1>
+
+    {{ include('massnahmeart/_form.html.twig') }}
+
+    <a href="{{ path('massnahmeart_index') }}">back to list</a>
+{% endblock %}

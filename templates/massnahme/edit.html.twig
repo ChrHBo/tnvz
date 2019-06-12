@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Massnahme{% endblock %}
+
+{% block body %}
+    <h1>Edit Massnahme</h1>
+
+    {{ include('massnahme/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('massnahme_index') }}">back to list</a>
+
+    {{ include('massnahme/_delete_form.html.twig') }}
+{% endblock %}

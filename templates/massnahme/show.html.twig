@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Massnahme{% endblock %}
+
+{% block body %}
+    <h1>Massnahme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ massnahme.id }}</td>
+            </tr>
+            <tr>
+                <th>Beginn</th>
+                <td>{{ massnahme.beginn ? massnahme.beginn|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ende</th>
+                <td>{{ massnahme.ende ? massnahme.ende|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('massnahme_index') }}">back to list</a>
+
+    <a href="{{ path('massnahme_edit', {'id': massnahme.id}) }}">edit</a>
+
+    {{ include('massnahme/_delete_form.html.twig') }}
+{% endblock %}
