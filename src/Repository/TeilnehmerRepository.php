@@ -19,6 +19,31 @@ class TeilnehmerRepository extends ServiceEntityRepository
         parent::__construct($registry, Teilnehmer::class);
     }
 
+    /**
+     * Suchfuntkion
+     * 
+     * Diese Funktion stellt die Datenbankabfrage dar.
+     * 
+     * 
+     * @param  string                $term  Search term
+     * @return Array                 $qb   Array
+     */
+    public function findAllWithSearch(?string $term)
+    {
+        $qb = $this->createQueryBuilder('m');
+        if ($term) {
+            $qb->andWhere('m.name LIKE :term OR m.vorname LIKE :term')
+               ->setParameter('term', '%' . $term . '%')
+            ;
+        }
+        return $qb
+            ->orderBy('m.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Teilnehmer[] Returns an array of Teilnehmer objects
     //  */
