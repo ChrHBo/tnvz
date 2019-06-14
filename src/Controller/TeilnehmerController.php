@@ -15,6 +15,26 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TeilnehmerController extends AbstractController
 {
+
+    /**
+     * Search action.
+     * @Route("/search", name="teilnehmer_search", methods={"GET"})
+     * @param  Request               $request Request instance
+     * @param  string                $search  Search term
+     * @return Response|JsonResponse          Response instance
+     */
+    public function searchAction(TeilnehmerRepository $repository, Request $request)
+    {
+        
+        $q = $request->query->get('q');
+        $teilnehmer = $repository->findAllWithSearch($q);
+
+        return $this->render('teilnehmer/search.html.twig', [
+            'teilnehmers' => $teilnehmer,
+
+        ]);
+    }
+    
     /**
      * @Route("/", name="teilnehmer_index", methods={"GET"})
      */
@@ -92,30 +112,6 @@ class TeilnehmerController extends AbstractController
         }
 
         return $this->redirectToRoute('teilnehmer_index');
-    }
-
-    /**
-     * Suchfunktion.
-     * 
-     * Diese Funktion liest die Variable q aus.
-     * 
-     * 
-     * @Route("/search", name="teilnehmer_search", methods={"GET"})
-     * @param  Request               $request Request instance
-     * @param  string                $search  Search term
-     * @param  repository            $repository Database
-     *
-     */
-    public function searchAction(TeilnehmerRepository $repository, Request $request)
-    {
-        
-        $q = $request->query->get('q');
-        $teilnehmer = $repository->findAllWithSearch($q);
-
-        return $this->render('teilnehmer/search.html.twig', [
-            'teilnehmers' => $teilnehmer,
-
-        ]);
     }
 
 }
