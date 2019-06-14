@@ -17,11 +17,17 @@ class TeilnehmerController extends AbstractController
 {
 
     /**
-     * Search action.
+     * Suchfuntion.
+     * 
+     * Nimmt GET Variable q entgegen und übergibt sie der Mehode
+     * findAllWithSearch() im Repository zur Abfrage der Datenbank
+     * 
      * @Route("/search", name="teilnehmer_search", methods={"GET"})
-     * @param  Request               $request Request instance
-     * @param  string                $search  Search term
-     * @return Response|JsonResponse          Response instance
+     * 
+     * @param  Request               $request       Request instance
+     * @param  string                $q             Search term
+     * @param  TeilnehmerRepository  $repository    Database
+     * @return Response              teilnehmers[]  Response instance
      */
     public function searchAction(TeilnehmerRepository $repository, Request $request)
     {
