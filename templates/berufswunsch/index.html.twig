@@ -17,8 +17,8 @@
             <tr>
                 <td>{{ berufswunsch.name }}</td>
                 <td>
-                    <a href="{{ path('berufswunsch_show', {'id': berufswunsch.id}) }}">show</a>
-                    <a href="{{ path('berufswunsch_edit', {'id': berufswunsch.id}) }}">edit</a>
+                    <a href="{{ path('berufswunsch_show', {'id': berufswunsch.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-eye"></i> anzeigen</a>
+                    <a href="{{ path('berufswunsch_edit', {'id': berufswunsch.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-edit"></i> ändern</a>
                 </td>
             </tr>
         {% else %}

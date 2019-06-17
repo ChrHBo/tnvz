@@ -6,11 +6,7 @@
     <h1>Funktion</h1>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ funktion.id }}</td>
-            </tr>
+        <tbody class="thead-light">
             <tr>
                 <th>Name</th>
                 <td>{{ funktion.name }}</td>
@@ -18,9 +14,14 @@
         </tbody>
     </table>
 
-    <a href="{{ path('funktion_index') }}">back to list</a>
-
-    <a href="{{ path('funktion_edit', {'id': funktion.id}) }}">edit</a>
-
-    {{ include('funktion/_delete_form.html.twig') }}
+    <div class="btn-group">
+        <a href="{{ path('funktion_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+        <a href="{{ path('funktion_edit', {'id': funktion.id}) }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">ändern</a>
+    </div>
 {% endblock %}
+
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('funktion/_delete_form.html.twig') }}
+{% endblock %} 

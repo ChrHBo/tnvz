@@ -39,6 +39,8 @@ class EintragsbereichController extends AbstractController
             $entityManager->persist($eintragsbereich);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Eintragungsbereich wurde angelegt');
+
             return $this->redirectToRoute('eintragsbereich_index');
         }
 

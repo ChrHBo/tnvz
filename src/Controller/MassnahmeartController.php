@@ -39,6 +39,8 @@ class MassnahmeartController extends AbstractController
             $entityManager->persist($massnahmeart);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Maßnahmeart wurde angelegt');
+
             return $this->redirectToRoute('massnahmeart_index');
         }
 

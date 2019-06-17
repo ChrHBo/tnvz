@@ -3,11 +3,16 @@
 {% block title %}Edit Mitarbeiter{% endblock %}
 
 {% block body %}
-    <h1>Edit Mitarbeiter</h1>
+    <h1>Ändere Mitarbeiter</h1>
 
-    {{ include('mitarbeiter/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('mitarbeiter/_form.html.twig', {'button_label': 'Ändern'}) }}
 
-    <a href="{{ path('mitarbeiter_index') }}">back to list</a>
+    <a href="{{ path('mitarbeiter_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
 
-    {{ include('mitarbeiter/_delete_form.html.twig') }}
+  
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('mitarbeiter/_delete_form.html.twig') }}
+{% endblock %} 

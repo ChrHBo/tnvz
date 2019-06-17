@@ -3,11 +3,16 @@
 {% block title %}Edit Funktion{% endblock %}
 
 {% block body %}
-    <h1>Edit Funktion</h1>
+    <h1>Ändere Funktion</h1>
 
-    {{ include('funktion/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('funktion/_form.html.twig', {'button_label': 'Ändern'}) }}
 
-    <a href="{{ path('funktion_index') }}">back to list</a>
+    <a href="{{ path('funktion_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
 
-    {{ include('funktion/_delete_form.html.twig') }}
+
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('funktion/_delete_form.html.twig') }}
+{% endblock %} 

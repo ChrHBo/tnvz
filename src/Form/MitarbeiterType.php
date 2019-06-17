@@ -20,9 +20,15 @@ class MitarbeiterType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('vorname', TextType::class)
-            ->add('raum', TextType::class)
-            ->add('fon', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('raum', TextType::class, [
+                'required'   => true,
+            ])
+            ->add('fon', TextType::class, [
+                'required'   => false,
+            ])
+            ->add('email', EmailType::class, [
+                'required'   => false,
+            ])
             ->add('funktion', EntityType::class, [
                 'class' => Funktion::class,
                 'choice_label' => 'name',

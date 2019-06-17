@@ -79,6 +79,8 @@ class TeilnehmerController extends AbstractController
             $entityManager->persist($teilnehmer);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Teilnehmer wurde angelegt');
+
             return $this->redirectToRoute('teilnehmer_index');
         }
 

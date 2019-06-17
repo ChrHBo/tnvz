@@ -39,6 +39,8 @@ class FunktionController extends AbstractController
             $entityManager->persist($funktion);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Funktion wurde angelegt');
+
             return $this->redirectToRoute('funktion_index');
         }
 

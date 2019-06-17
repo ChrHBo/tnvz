@@ -6,11 +6,7 @@
     <h1>Berufswunsch</h1>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ berufswunsch.id }}</td>
-            </tr>
+        <tbody class="thead-light">
             <tr>
                 <th>Name</th>
                 <td>{{ berufswunsch.name }}</td>
@@ -18,9 +14,13 @@
         </tbody>
     </table>
 
-    <a href="{{ path('berufswunsch_index') }}">back to list</a>
-
-    <a href="{{ path('berufswunsch_edit', {'id': berufswunsch.id}) }}">edit</a>
-
-    {{ include('berufswunsch/_delete_form.html.twig') }}
+    <div class="btn-group">
+        <a href="{{ path('berufswunsch_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+        <a href="{{ path('berufswunsch_edit', {'id': berufswunsch.id}) }}"  class="btn btn-primary btn-sm" role="button" aria-pressed="true">ändern</a>
+    </div>
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+     {{ include('berufswunsch/_delete_form.html.twig') }}
+{% endblock %} 

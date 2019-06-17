@@ -39,6 +39,8 @@ class EintragungController extends AbstractController
             $entityManager->persist($eintragung);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Eintragung wurde angelegt');
+
             return $this->redirectToRoute('eintragung_index');
         }
 

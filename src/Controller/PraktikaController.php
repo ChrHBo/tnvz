@@ -39,6 +39,8 @@ class PraktikaController extends AbstractController
             $entityManager->persist($praktika);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Praktikum wurde angelegt');
+
             return $this->redirectToRoute('praktika_index');
         }
 

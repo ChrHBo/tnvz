@@ -52,6 +52,8 @@ class MitarbeiterController extends AbstractController
             $entityManager->persist($mitarbeiter);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Mitarbeiter wurde angelegt');
+
             return $this->redirectToRoute('mitarbeiter_index');
         }
 

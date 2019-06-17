@@ -3,11 +3,15 @@
 {% block title %}Edit Berufswunsch{% endblock %}
 
 {% block body %}
-    <h1>Edit Berufswunsch</h1>
+    <h1>Ändere Berufswunsch</h1>
 
-    {{ include('berufswunsch/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('berufswunsch/_form.html.twig', {'button_label': 'Ändern'}) }}
 
-    <a href="{{ path('berufswunsch_index') }}">back to list</a>
-
-    {{ include('berufswunsch/_delete_form.html.twig') }}
+    <a href="{{ path('berufswunsch_index') }}"  class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+  
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('berufswunsch/_delete_form.html.twig') }}
+{% endblock %} 

@@ -49,6 +49,8 @@ class FirmaController extends AbstractController
             $entityManager->persist($firma);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Firma wurde angelegt');
+
             return $this->redirectToRoute('firma_index');
         }
 
