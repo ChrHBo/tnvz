@@ -39,6 +39,8 @@ class BerufswunschController extends AbstractController
             $entityManager->persist($berufswunsch);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Berufswunsch wurde angelegt');
+
             return $this->redirectToRoute('berufswunsch_index');
         }
 
