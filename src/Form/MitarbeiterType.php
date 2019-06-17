@@ -2,22 +2,31 @@
 
 namespace App\Form;
 
+use App\Entity\Funktion;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 use App\Entity\Mitarbeiter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class MitarbeiterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('vorname')
-            ->add('raum')
-            ->add('fon')
-            ->add('email')
-            ->add('funktion')
+            ->add('name', TextType::class)
+            ->add('vorname', TextType::class)
+            ->add('raum', TextType::class)
+            ->add('fon', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('funktion', EntityType::class, [
+                'class' => Funktion::class,
+                'choice_label' => 'name',
+            ])
         ;
     }
 

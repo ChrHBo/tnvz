@@ -1,22 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Berufswunsch index{% endblock %}
+{% block title %}Berufswunsch{% endblock %}
 
 {% block body %}
-    <h1>Berufswunsch index</h1>
+    <h1>Berufswunsch</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Id</th>
                 <th>Name</th>
-                <th>actions</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
         {% for berufswunsch in berufswunsches %}
             <tr>
-                <td>{{ berufswunsch.id }}</td>
                 <td>{{ berufswunsch.name }}</td>
                 <td>
                     <a href="{{ path('berufswunsch_show', {'id': berufswunsch.id}) }}">show</a>
@@ -25,11 +23,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="2">keine Einträge gefunden</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('berufswunsch_new') }}">Create new</a>
+    <a href="{{ path('berufswunsch_new') }}" class="btn btn-primary btn-sm active" role="button"><i class="fa fa-plus"></i> neu erstellen</a>
 {% endblock %}

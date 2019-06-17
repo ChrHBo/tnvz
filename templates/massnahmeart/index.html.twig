@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Massnahmeart index{% endblock %}
+{% block title %}Massnahmeart{% endblock %}
 
 {% block body %}
-    <h1>Massnahmeart index</h1>
+    <h1>Massnahmeart</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Id</th>
                 <th>Name</th>
-                <th>actions</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +18,17 @@
                 <td>{{ massnahmeart.id }}</td>
                 <td>{{ massnahmeart.name }}</td>
                 <td>
-                    <a href="{{ path('massnahmeart_show', {'id': massnahmeart.id}) }}">show</a>
-                    <a href="{{ path('massnahmeart_edit', {'id': massnahmeart.id}) }}">edit</a>
+                    <a href="{{ path('massnahmeart_show', {'id': massnahmeart.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-eye"></i> anzeigen</a>
+                    <a href="{{ path('massnahmeart_edit', {'id': massnahmeart.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-edit"></i> ändern</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="2">keine Einträge gefunden</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('massnahmeart_new') }}">Create new</a>
+    <a href="{{ path('massnahmeart_new') }}" class="btn btn-primary btn-sm active" role="button"><i class="fa fa-plus"></i> neu erstellen</a>
 {% endblock %}

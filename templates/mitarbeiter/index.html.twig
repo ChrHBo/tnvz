@@ -9,6 +9,7 @@
         <thead class="thead-light">
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Name', 'name', {}, { 'direction': ('' == pagination.direction or 'asc' == pagination.direction) ? 'desc' : 'asc'} ) }} </th>
+                <th>Funktion</th>
                 <th>Raum</th>
                 <th>Fon</th>
                 <th>Option</th>
@@ -18,6 +19,7 @@
         {% for mitarbeiter in pagination %}
             <tr>
                 <td>{{ mitarbeiter.name }}</td>
+                <td>{{ mitarbeiter.funktion.name }}</td>
                 <td>{{ mitarbeiter.raum }}</td>
                 <td>{{ mitarbeiter.fon }}</td>
                 <td>
@@ -27,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">keine Einträge gefunden</td>
+                <td colspan="5">keine Einträge gefunden</td>
             </tr>
         {% endfor %}
         </tbody>

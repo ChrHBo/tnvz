@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Eintragsbereich{% endblock %}
+{% block title %}Neuen Eintragsbereich{% endblock %}
 
 {% block body %}
-    <h1>Create new Eintragsbereich</h1>
+    <h1>Erstelle neuen Eintragsbereich</h1>
 
     {{ include('eintragsbereich/_form.html.twig') }}
 
-    <a href="{{ path('eintragsbereich_index') }}">back to list</a>
+    <a href="{{ path('eintragsbereich_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Massnahme{% endblock %}
+{% block title %}Neue Massnahme{% endblock %}
 
 {% block body %}
-    <h1>Create new Massnahme</h1>
+    <h1>Erstelle neue Massnahme</h1>
 
     {{ include('massnahme/_form.html.twig') }}
 
-    <a href="{{ path('massnahme_index') }}">back to list</a>
+    <a href="{{ path('massnahme_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
 {% endblock %}

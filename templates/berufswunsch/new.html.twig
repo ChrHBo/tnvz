@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Berufswunsch{% endblock %}
+{% block title %}Neuer Berufswunsch{% endblock %}
 
 {% block body %}
-    <h1>Create new Berufswunsch</h1>
+    <h1>Erstelle neuen Berufswunsch</h1>
 
     {{ include('berufswunsch/_form.html.twig') }}
 
-    <a href="{{ path('berufswunsch_index') }}">back to list</a>
+    <a href="{{ path('berufswunsch_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
 {% endblock %}

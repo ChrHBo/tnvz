@@ -1,11 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Eintragung{% endblock %}
+{% block title %}Neue Eintragung{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.min.css') }}">
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src=" /js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+        });
+    </script>
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Eintragung</h1>
+    <h1>Erstelle neue Eintragung</h1>
 
     {{ include('eintragung/_form.html.twig') }}
 
-    <a href="{{ path('eintragung_index') }}">back to list</a>
+    <a href="{{ path('eintragung_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
 {% endblock %}
