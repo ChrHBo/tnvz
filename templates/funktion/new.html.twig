@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Funktion{% endblock %}
+{% block title %}Neue Funktion{% endblock %}
 
 {% block body %}
-    <h1>Create new Funktion</h1>
+    <h1>Erstelle neue Funktion</h1>
 
     {{ include('funktion/_form.html.twig') }}
 
-    <a href="{{ path('funktion_index') }}">back to list</a>
+    <p>
+        <a href="{{ path('funktion_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück</a>
+    </p>
 {% endblock %}

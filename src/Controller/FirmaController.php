@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/firma")
@@ -18,11 +19,20 @@ class FirmaController extends AbstractController
     /**
      * @Route("/", name="firma_index", methods={"GET"})
      */
-    public function index(FirmaRepository $firmaRepository): Response
+    public function index(Request $request, FirmaRepository $firmaRepository, PaginatorInterface $paginator): Response
     {
-        return $this->render('firma/index.html.twig', [
-            'firmas' => $firmaRepository->findAll(),
-        ]);
+        $query = $this->getDoctrine()
+            ->getRepository(Firma::class)
+            ->findAll();
+        
+        $result = $paginator->paginate(
+            $query, 
+            $request->query->getInt('page', 1), 
+            $request->query->getInt('limit', 5)
+        );
+
+        return $this->render('firma/index.html.twig',  
+            array('pagination' => $result));
     }
 
     /**

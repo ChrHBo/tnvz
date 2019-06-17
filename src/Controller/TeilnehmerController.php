@@ -43,6 +43,10 @@ class TeilnehmerController extends AbstractController
     }
     
     /**
+     * Index.
+     * 
+     * Listet die Ergebnis mit Pagination auf
+     * 
      * @Route("/", name="teilnehmer_index", methods={"GET"})
      */
     public function index(Request $request, TeilnehmerRepository $teilnehmerRepository, PaginatorInterface $paginator): Response

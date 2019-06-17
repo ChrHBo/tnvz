@@ -1,35 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Funktion index{% endblock %}
+{% block title %}Funktion{% endblock %}
 
 {% block body %}
-    <h1>Funktion index</h1>
+    <h1>Funktion</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Id</th>
                 <th>Name</th>
-                <th>actions</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
         {% for funktion in funktions %}
             <tr>
-                <td>{{ funktion.id }}</td>
                 <td>{{ funktion.name }}</td>
                 <td>
-                    <a href="{{ path('funktion_show', {'id': funktion.id}) }}">show</a>
-                    <a href="{{ path('funktion_edit', {'id': funktion.id}) }}">edit</a>
+                    <a href="{{ path('funktion_show', {'id': funktion.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-eye"></i> anzeigen</a>
+                    <a href="{{ path('funktion_edit', {'id': funktion.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-edit"></i> ändern</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="2">keine Einträge gefunden</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('funktion_new') }}">Create new</a>
+    <a href="{{ path('funktion_new') }}" class="btn btn-primary btn-sm active" role="button"><i class="fa fa-plus"></i> neu erstellen</a>
 {% endblock %}

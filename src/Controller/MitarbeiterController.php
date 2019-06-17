@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/mitarbeiter")
@@ -16,13 +17,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class MitarbeiterController extends AbstractController
 {
     /**
+     * Index.
+     * 
+     * Listet die Ergebnis mit Pagination auf
      * @Route("/", name="mitarbeiter_index", methods={"GET"})
      */
-    public function index(MitarbeiterRepository $mitarbeiterRepository): Response
+    public function index(Request $request,MitarbeiterRepository $mitarbeiterRepository, PaginatorInterface $paginator): Response
     {
-        return $this->render('mitarbeiter/index.html.twig', [
-            'mitarbeiters' => $mitarbeiterRepository->findAll(),
-        ]);
+        $query = $this->getDoctrine()
+        ->getRepository(Mitarbeiter::class)
+        ->findAll();
+        
+        $result = $paginator->paginate(
+        $query, 
+        $request->query->getInt('page', 1), 
+        $request->query->getInt('limit', 5)
+    );
+
+        return $this->render('mitarbeiter/index.html.twig',
+            array('pagination' => $result));
     }
 
     /**

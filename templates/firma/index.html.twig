@@ -1,49 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Firma index{% endblock %}
+{% block title %}Firma{% endblock %}
 
 {% block body %}
-    <h1>Firma index</h1>
+    <h1>{{ pagination.getTotalItemCount }} Firmen</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                 <th>{{ knp_pagination_sortable(pagination, 'Name', 'name', {}, { 'direction': ('' == pagination.direction or 'asc' == pagination.direction) ? 'desc' : 'asc'} ) }} </th>
                 <th>Ansprechpartner</th>
-                <th>Strasse</th>
-                <th>Hausnummer</th>
-                <th>Plz</th>
-                <th>Ort</th>
                 <th>Fon</th>
-                <th>Email</th>
-                <th>actions</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
-        {% for firma in firmas %}
+        {% for firma in pagination %}
             <tr>
-                <td>{{ firma.id }}</td>
                 <td>{{ firma.name }}</td>
                 <td>{{ firma.ansprechpartner }}</td>
-                <td>{{ firma.strasse }}</td>
-                <td>{{ firma.hausnummer }}</td>
-                <td>{{ firma.plz }}</td>
-                <td>{{ firma.ort }}</td>
                 <td>{{ firma.fon }}</td>
-                <td>{{ firma.email }}</td>
                 <td>
-                    <a href="{{ path('firma_show', {'id': firma.id}) }}">show</a>
-                    <a href="{{ path('firma_edit', {'id': firma.id}) }}">edit</a>
+                    <a href="{{ path('firma_show', {'id': firma.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-eye"></i> anzeigen</a>
+                    <a href="{{ path('firma_edit', {'id': firma.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-edit"></i> ändern</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+               <td colspan="4">keine Einträge gefunden</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div class="pagination pagination-md justify-content-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
-    <a href="{{ path('firma_new') }}">Create new</a>
+    <a href="{{ path('firma_new') }}" class="btn btn-primary btn-sm active" role="button"><i class="fa fa-plus"></i> neu erstellen</a>
 {% endblock %}
