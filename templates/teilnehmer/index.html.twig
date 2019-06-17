@@ -1,43 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Teilnehmer index{% endblock %}
+{% block title %}Teilnehmer{% endblock %}
 
 {% block body %}
-    <h1>Teilnehmer index</h1>
+    <h1>{{ pagination.getTotalItemCount }} Teilnehmer</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Vorname</th>
-                <th>Fon</th>
-                <th>Email</th>
-                <th>Geburtsdatum</th>
-                <th>actions</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Name', 'name', {}, { 'direction': ('' == pagination.direction or 'asc' == pagination.direction) ? 'desc' : 'asc'} ) }} </th>
+                <th>{{ knp_pagination_sortable(pagination, 'Vorname', 'vorname' , {}, { 'direction': ('' == pagination.direction or 'asc' == pagination.direction) ? 'desc' : 'asc'}) }} </th>
+                <th>Telefon</th>
+                <th>Option</th>
             </tr>
         </thead>
         <tbody>
-        {% for teilnehmer in teilnehmers %}
+        {% for teilnehmer in pagination %}
             <tr>
-                <td>{{ teilnehmer.id }}</td>
                 <td>{{ teilnehmer.name }}</td>
                 <td>{{ teilnehmer.vorname }}</td>
                 <td>{{ teilnehmer.fon }}</td>
-                <td>{{ teilnehmer.email }}</td>
-                <td>{{ teilnehmer.geburtsdatum ? teilnehmer.geburtsdatum|date('Y-m-d') : '' }}</td>
+                {# <td>{{ teilnehmer.geburtsdatum ? teilnehmer.geburtsdatum|date('Y-m-d') : '' }}</td> #}
                 <td>
-                    <a href="{{ path('teilnehmer_show', {'id': teilnehmer.id}) }}">show</a>
-                    <a href="{{ path('teilnehmer_edit', {'id': teilnehmer.id}) }}">edit</a>
+                    <a href="{{ path('teilnehmer_show', {'id': teilnehmer.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-eye"></i> anzeigen</a>
+                    <a href="{{ path('teilnehmer_edit', {'id': teilnehmer.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-edit"></i> ändern</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="4">keine Einträge gefunden</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div class="pagination pagination-md justify-content-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
-    <a href="{{ path('teilnehmer_new') }}">Create new</a>
+     <a href="{{ path('teilnehmer_new') }}" class="btn btn-primary btn-sm active" role="button"><i class="fa fa-plus"></i> neu erstellen</a>
 {% endblock %}

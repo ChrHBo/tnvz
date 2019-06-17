@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/teilnehmer")
@@ -44,11 +45,20 @@ class TeilnehmerController extends AbstractController
     /**
      * @Route("/", name="teilnehmer_index", methods={"GET"})
      */
-    public function index(TeilnehmerRepository $teilnehmerRepository): Response
+    public function index(Request $request, TeilnehmerRepository $teilnehmerRepository, PaginatorInterface $paginator): Response
     {
-        return $this->render('teilnehmer/index.html.twig', [
-            'teilnehmers' => $teilnehmerRepository->findAll(),
-        ]);
+        $query = $this->getDoctrine()
+        ->getRepository(Teilnehmer::class)
+        ->findAll();
+        
+        $result = $paginator->paginate(
+        $query, 
+        $request->query->getInt('page', 1), 
+        $request->query->getInt('limit', 5)
+    );
+
+        return $this->render('teilnehmer/index.html.twig', 
+            array('pagination' => $result));
     }
 
     /**

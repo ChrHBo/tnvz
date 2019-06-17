@@ -35,6 +35,12 @@ class TeilnehmerRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+     * Search query.
+     * 
+     * @param  string                       $term 
+     * @return Response          Response instance
+     */
 
     public function findAllWithSearch(?string $term)
     {
