@@ -6,11 +6,7 @@
     <h1>Eintragsbereich</h1>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ eintragsbereich.id }}</td>
-            </tr>
+        <tbody class="thead-light">
             <tr>
                 <th>Name</th>
                 <td>{{ eintragsbereich.name }}</td>
@@ -18,9 +14,13 @@
         </tbody>
     </table>
 
-    <a href="{{ path('eintragsbereich_index') }}">back to list</a>
+    <a href="{{ path('eintragsbereich_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+    <a href="{{ path('eintragsbereich_edit', {'id': eintragsbereich.id}) }} class="btn btn-primary btn-sm" role="button" aria-pressed="true">ändern</a>
 
-    <a href="{{ path('eintragsbereich_edit', {'id': eintragsbereich.id}) }}">edit</a>
 
-    {{ include('eintragsbereich/_delete_form.html.twig') }}
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+       {{ include('eintragsbereich/_delete_form.html.twig') }}
+{% endblock %} 

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Eintragung;
+use App\Entity\Teilnehmer;
 use App\Form\EintragungType;
 use App\Repository\EintragungRepository;
+use App\Repository\TeilnehmerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,12 +32,18 @@ class EintragungController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $teilnehmer_id = $request->query->get('id');
+
         $eintragung = new Eintragung();
         $form = $this->createForm(EintragungType::class, $eintragung);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $teilnehmer = $entityManager->getRepository(Teilnehmer::class)->find($teilnehmer_id);
+            $teilnehmer->addEintragungen($eintragung);
+
             $entityManager->persist($eintragung);
             $entityManager->flush();
 

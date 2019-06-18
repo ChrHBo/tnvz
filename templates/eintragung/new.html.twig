@@ -15,7 +15,7 @@
         $(document).ready(function() {
             // you may need to change this code if you are not using Bootstrap Datepicker
             $('.js-datepicker').datepicker({
-                format: 'dd-mm-yyyy'
+                format: 'yyyy-mm-dd'
             });
         });
     </script>
@@ -26,5 +26,5 @@
 
     {{ include('eintragung/_form.html.twig') }}
 
-    <a href="{{ path('eintragung_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+    {# <a href="{{ path('eintragung_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a> #}
 {% endblock %}

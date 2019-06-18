@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Eintragsbereich;
+use App\Entity\Teilnehmer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use App\Entity\Eintragung;
@@ -10,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class EintragungType extends AbstractType
@@ -22,8 +24,7 @@ class EintragungType extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
             ])
-            ->add('text', TextType::class)
-            ->add('teilnehmer')
+            ->add('text', TextareaType::class)
             ->add('bereich', EntityType::class, [
                 'class' => Eintragsbereich::class,
                 'choice_label' => 'name',
