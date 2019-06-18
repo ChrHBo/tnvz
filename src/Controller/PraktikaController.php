@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Praktika;
+use App\Entity\Teilnehmer;
 use App\Form\PraktikaType;
 use App\Repository\PraktikaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,12 +31,17 @@ class PraktikaController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $teilnehmer_id = $request->query->get('id');
+
         $praktika = new Praktika();
         $form = $this->createForm(PraktikaType::class, $praktika);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $teilnehmer = $entityManager->getRepository(Teilnehmer::class)->find($teilnehmer_id);
+            $teilnehmer->addPraktika($praktika);
+
             $entityManager->persist($praktika);
             $entityManager->flush();
 

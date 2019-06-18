@@ -3,11 +3,15 @@
 {% block title %}Edit Praktika{% endblock %}
 
 {% block body %}
-    <h1>Edit Praktika</h1>
+    <h1>Ändere Praktika</h1>
 
-    {{ include('praktika/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('praktika/_form.html.twig', {'button_label': 'Ändern'}) }}
 
-    <a href="{{ path('praktika_index') }}">back to list</a>
-
-    {{ include('praktika/_delete_form.html.twig') }}
+  
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('praktika/_delete_form.html.twig') }}
+   
+{% endblock %} 

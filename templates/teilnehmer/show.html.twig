@@ -44,6 +44,8 @@
                 {{ mitarbeiter.funktion.name }}
                 </a>
             </li>
+        {% else %}
+               <h4>keine Einträge gefunden</h4>
         {% endfor %}
         <h2>Maßnahmen:</h2>
         {% for massnahme in teilnehmer.massnahmen %}
@@ -54,6 +56,20 @@
                 {{ massnahme.beginn|date('Y-m-d') }}
                 {{ massnahme.ende|date('Y-m-d') }}
                 {{ massnahme.massnahmeart.name }}
+                </a>
+            </li>
+            {% else %}
+               <h4>keine Einträge gefunden</h4>
+        {% endfor %}
+        <h2>Praktikum:</h2>
+        {% for praktikum in teilnehmer.praktikas %}
+            <li class="list-group-item list-group-item-action">
+                <a href="{{ path('praktika_show', {
+                                        'id': praktikum.id
+                                    }) }}">
+                {{ praktikum.beginn|date('Y-m-d') }}
+                {{ praktikum.ende|date('Y-m-d') }}
+                {{ praktikum.firma.name }}
                 </a>
             </li>
             {% else %}
@@ -75,5 +91,7 @@
     <p>
         <br/>
         <a href="{{ path('massnahme_new', {'id': teilnehmer.id}) }}"  class="btn btn-info btn-lg btn-block active" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Maßnahme</a>
+         <br/>
+        <a href="{{ path('praktika_new', {'id': teilnehmer.id}) }}"  class="btn btn-info btn-lg btn-block active" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Praktikum</a>
     </p>
 {% endblock %} 

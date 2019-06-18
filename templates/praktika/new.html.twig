@@ -1,11 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Praktika{% endblock %}
+{% block title %}Neues Praktikum{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.min.css') }}">
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src=" /js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Praktika</h1>
+    <h1>Erstelle neues Praktika</h1>
 
     {{ include('praktika/_form.html.twig') }}
 
-    <a href="{{ path('praktika_index') }}">back to list</a>
 {% endblock %}
