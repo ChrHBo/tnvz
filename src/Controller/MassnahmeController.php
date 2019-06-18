@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Massnahme;
+use App\Entity\Teilnehmer;
 use App\Form\MassnahmeType;
 use App\Repository\MassnahmeRepository;
+use App\Repository\TeilnehmerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,12 +32,19 @@ class MassnahmeController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
+        $teilnehmer_id = $request->query->get('id');
+        
         $massnahme = new Massnahme();
         $form = $this->createForm(MassnahmeType::class, $massnahme);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            
+            $teilnehmer = $entityManager->getRepository(Teilnehmer::class)->find($teilnehmer_id);
+            $teilnehmer->addMassnahman($massnahme);
+            
             $entityManager->persist($massnahme);
             $entityManager->flush();
 

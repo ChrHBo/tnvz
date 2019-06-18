@@ -5,7 +5,6 @@
 {% block stylesheets %}
     {{ parent() }}
      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.min.css') }}">
-
 {% endblock %}
 
 {% block javascripts %}
@@ -15,7 +14,7 @@
         $(document).ready(function() {
             // you may need to change this code if you are not using Bootstrap Datepicker
             $('.js-datepicker').datepicker({
-                format: 'dd-mm-yyyy'
+                format: 'yyyy-mm-dd'
             });
         });
     </script>

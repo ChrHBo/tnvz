@@ -2,10 +2,28 @@
 
 {% block title %}Neue Massnahme{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src=" /js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <h1>Erstelle neue Massnahme</h1>
 
     {{ include('massnahme/_form.html.twig') }}
 
-    <a href="{{ path('massnahme_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+    {# <a href="{{ path('massnahme_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a> #}
 {% endblock %}

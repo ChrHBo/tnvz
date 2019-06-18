@@ -2,12 +2,35 @@
 
 {% block title %}Edit Teilnehmer{% endblock %}
 
-{% block body %}
-    <h1>Edit Teilnehmer</h1>
+{% block stylesheets %}
+    {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.min.css') }}">
 
-    {{ include('teilnehmer/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('teilnehmer_index') }}">back to list</a>
-
-    {{ include('teilnehmer/_delete_form.html.twig') }}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src=" /js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // you may need to change this code if you are not using Bootstrap Datepicker
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>Ändere Teilnehmer</h1>
+
+    {{ include('teilnehmer/_form.html.twig', {'button_label': 'Ändern'}) }}
+
+     <a href="{{ path('teilnehmer_index') }}" class="btn btn-primary btn-sm active" role="button">zurück zur Liste</a>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('teilnehmer/_delete_form.html.twig') }}
+{% endblock %} 

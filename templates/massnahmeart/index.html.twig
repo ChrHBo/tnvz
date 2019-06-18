@@ -15,7 +15,6 @@
         <tbody>
         {% for massnahmeart in massnahmearts %}
             <tr>
-                <td>{{ massnahmeart.id }}</td>
                 <td>{{ massnahmeart.name }}</td>
                 <td>
                     <a href="{{ path('massnahmeart_show', {'id': massnahmeart.id}) }}" class="btn btn-secondary btn-sm active" role="button"><i class="fa fa-eye"></i> anzeigen</a>
