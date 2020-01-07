@@ -24,10 +24,10 @@ class MitarbeiterType extends AbstractType
                 'required'   => true,
             ])
             ->add('fon', TextType::class, [
-                'required'   => false,
+                'required'   => true,
             ])
             ->add('email', EmailType::class, [
-                'required'   => false,
+                'required'   => true,
             ])
             ->add('funktion', EntityType::class, [
                 'class' => Funktion::class,

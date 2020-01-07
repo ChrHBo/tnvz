@@ -50,7 +50,9 @@ class MassnahmeController extends AbstractController
 
             $this->addFlash('success', 'Massnahme wurde angelegt');
 
-            return $this->redirectToRoute('massnahme_index');
+            return $this->redirectToRoute('teilnehmer_show', [
+                'id' => $teilnehmer_id,
+            ]);
         }
 
         return $this->render('massnahme/new.html.twig', [

@@ -6,11 +6,7 @@
     <h1>Firma</h1>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ firma.id }}</td>
-            </tr>
+        <tbody class="thead-light">
             <tr>
                 <th>Name</th>
                 <td>{{ firma.name }}</td>
@@ -45,10 +41,13 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('firma_index') }}">back to list</a>
-
-    <a href="{{ path('firma_edit', {'id': firma.id}) }}">edit</a>
-
-    {{ include('firma/_delete_form.html.twig') }}
+    <div class="btn-group">
+        <a href="{{ path('firma_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a>
+        <a href="{{ path('firma_edit', {'id': firma.id}) }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">ändern</a>
+    </div>
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {# {{ include('firma/_delete_form.html.twig') }} #}
+{% endblock %} 

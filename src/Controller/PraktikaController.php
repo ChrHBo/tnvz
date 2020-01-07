@@ -47,7 +47,9 @@ class PraktikaController extends AbstractController
 
             $this->addFlash('success', 'Praktikum wurde angelegt');
 
-            return $this->redirectToRoute('praktika_index');
+            return $this->redirectToRoute('teilnehmer_show', [
+                'id' => $teilnehmer_id,
+            ]);
         }
 
         return $this->render('praktika/new.html.twig', [

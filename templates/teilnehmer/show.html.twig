@@ -33,7 +33,7 @@
             </tr>
         </tbody>
     </table>
-    <h2>Ansprechpartner:</h2>
+    <h4>Ansprechpartner:</h4>
     <ul class="list-group mb-5">
         {% for mitarbeiter in teilnehmer.ansprechpartner %}
             <li class="list-group-item list-group-item-action">
@@ -47,35 +47,35 @@
         {% else %}
                <h4>keine Ansprechpartner gefunden</h4>
         {% endfor %}
-        <h2>Maßnahmen:</h2>
+        <h4>Maßnahmen:</h4>
         {% for massnahme in teilnehmer.massnahmen %}
             <li class="list-group-item list-group-item-action">
                 <a href="{{ path('massnahme_show', {
                                         'id': massnahme.id
                                     }) }}">
-                {{ massnahme.beginn|date('Y-m-d') }}
-                {{ massnahme.ende|date('Y-m-d') }}
+                {{ massnahme.beginn|date('d.m.Y') }} -
+                {{ massnahme.ende|date('d.m.Y') }}
                 {{ massnahme.massnahmeart.name }}
                 </a>
             </li>
             {% else %}
                <h4>keine Maßnahmen gefunden</h4>
         {% endfor %}
-        <h2>Praktikum:</h2>
+        <h4>Praktikum:</h4>
         {% for praktikum in teilnehmer.praktikas %}
             <li class="list-group-item list-group-item-action">
                 <a href="{{ path('praktika_show', {
                                         'id': praktikum.id
                                     }) }}">
-                {{ praktikum.beginn|date('Y-m-d') }}
-                {{ praktikum.ende|date('Y-m-d') }}
+                {{ praktikum.beginn|date('d.m.Y') }} -
+                {{ praktikum.ende|date('d.m.Y') }}
                 {{ praktikum.firma.name }}
                 </a>
             </li>
             {% else %}
                <h4>keine Praktikas gefunden</h4>
         {% endfor %}
-        <h2>Eintragungen ({{ teilnehmer.eintragungen|length }}):</h2>
+        <h4>Eintragungen ({{ teilnehmer.eintragungen|length }}):</h4>
         {% for eintragungen in teilnehmer.eintragungen %}
             <li class="list-group-item list-group-item-action">
                 <a href="{{ path('eintragung_show', {
@@ -101,7 +101,7 @@
 
 {% block sidebar %}
     {{ parent() }}
-    {{ include('teilnehmer/_delete_form.html.twig') }}
+    {# {{ include('teilnehmer/_delete_form.html.twig') }} #}
     <p>
         <br/>
         <a href="{{ path('massnahme_new', {'id': teilnehmer.id}) }}"  class="btn btn-info btn-lg btn-block active" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Maßnahme</a>

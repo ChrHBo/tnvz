@@ -49,7 +49,9 @@ class EintragungController extends AbstractController
 
             $this->addFlash('success', 'Eintragung wurde angelegt');
 
-            return $this->redirectToRoute('eintragung_index');
+            return $this->redirectToRoute('teilnehmer_show', [
+                'id' => $teilnehmer_id,
+            ]);
         }
 
         return $this->render('eintragung/new.html.twig', [
