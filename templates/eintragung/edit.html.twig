@@ -3,11 +3,16 @@
 {% block title %}Edit Eintragung{% endblock %}
 
 {% block body %}
-    <h1>Edit Eintragung</h1>
+    <h1>Ändere Eintragung</h1>
 
-    {{ include('eintragung/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('eintragung/_form.html.twig', {'button_label': 'Speichern'}) }}
 
-    <a href="{{ path('eintragung_index') }}">back to list</a>
+    <a href="{{ path('eintragung_index') }}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">zurück zur Liste</a
 
-    {{ include('eintragung/_delete_form.html.twig') }}
+   
 {% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {{ include('eintragung/_delete_form.html.twig') }}
+{% endblock %} 

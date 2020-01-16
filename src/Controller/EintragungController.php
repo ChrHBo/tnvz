@@ -103,6 +103,8 @@ class EintragungController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('eintragung_index');
+        return $this->redirectToRoute('teilnehmer_show', [
+            'id' => $eintragung->getTeilnehmer()->getId(),
+        ]);
     }
 }
